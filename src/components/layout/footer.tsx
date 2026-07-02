@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { getCaseDataMetadata } from '@/lib/get-cases'
 
 const footerLinks = [
   { href: '/', label: 'Home' },
@@ -6,8 +7,9 @@ const footerLinks = [
   { href: '/map', label: 'Map' },
 ]
 
-export default function Footer() {
+export default async function Footer() {
   const year = new Date().getFullYear()
+  const metadata = await getCaseDataMetadata()
 
   return (
     <footer className="border-t border-outline-variant/30 bg-surface-container-low py-12">
@@ -39,6 +41,13 @@ export default function Footer() {
             &copy; {year} Marked in Red. Free and open.
           </p>
         </div>
+
+        {!metadata.sample ? (
+          <p className="mt-6 border-t border-outline-variant/30 pt-6 text-center text-xs text-on-surface-variant md:text-left">
+            Data: {metadata.source}, updated {metadata.vintage}. Verify
+            details with the investigating agency.
+          </p>
+        ) : null}
       </div>
     </footer>
   )

@@ -7,7 +7,7 @@ import {
   STATUS_COLORS,
   STATUS_LABELS,
 } from '@/lib/constants'
-import { getCaseById } from '@/lib/get-cases'
+import { getCaseById, getCaseDataMetadata } from '@/lib/get-cases'
 import type { Case } from '@/lib/types'
 
 type CasePageProps = {
@@ -56,7 +56,10 @@ export async function generateMetadata({
 
 export default async function CasePage({ params }: CasePageProps) {
   const { id } = await params
-  const item = await getCaseById(id)
+  const [item, metadata] = await Promise.all([
+    getCaseById(id),
+    getCaseDataMetadata(),
+  ])
 
   if (!item) {
     notFound()
@@ -67,7 +70,7 @@ export default async function CasePage({ params }: CasePageProps) {
   return (
     <div className="bg-surface">
       <article className="mx-auto flex max-w-[1440px] flex-col gap-6 px-6 py-10">
-        <SampleDataBanner />
+        <SampleDataBanner sample={metadata.sample} />
 
         <Link
           href="/list"

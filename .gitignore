@@ -25,6 +25,7 @@
 .DS_Store
 *.pem
 /scripts/.boundary-src/
+/scripts/.case-src/
 
 # debug
 npm-debug.log*

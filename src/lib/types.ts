@@ -1,4 +1,10 @@
 export type CaseStatus = 'missing' | 'murdered' | 'found' | 'resolved'
+export type LocationPrecision =
+  | 'address'
+  | 'city'
+  | 'county'
+  | 'state'
+  | 'unknown'
 export type Country = 'US' | 'CA'
 export type EditStatus = 'live_unverified' | 'approved' | 'rejected' | 'auto_flagged'
 export type TrustLevel = 'new' | 'trusted' | 'moderator' | 'admin'
@@ -19,6 +25,8 @@ export interface Case {
   location_name: string
   latitude: number | null
   longitude: number | null
+  location_unknown: boolean
+  location_precision: LocationPrecision
   country: Country
   state_province: string
   summary: string
@@ -27,6 +35,24 @@ export interface Case {
   additional_info: Record<string, string>
   created_at: string
   updated_at: string
+}
+
+export interface CaseDataMetadata {
+  source: string
+  vintage: string
+  generated_at: string
+  counts: {
+    total: number
+    geocoded: number
+    location_unknown: number
+    dropped: number
+  }
+  sample: boolean
+}
+
+export interface CaseDataFile {
+  metadata: CaseDataMetadata
+  cases: Case[]
 }
 
 export interface WikiEdit {

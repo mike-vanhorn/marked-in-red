@@ -21,6 +21,8 @@ function buildCase(overrides: Partial<Case>): Case {
     location_name: 'Test Location',
     latitude: 46.8,
     longitude: -100.7,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'US',
     state_province: 'ND',
     summary: 'Test summary.',

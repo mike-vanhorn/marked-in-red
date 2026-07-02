@@ -1,14 +1,17 @@
 import MapExplorer from '@/components/map/map-explorer'
 import SampleDataBanner from '@/components/layout/sample-data-banner'
-import { getCases } from '@/lib/get-cases'
+import { getCaseDataMetadata, getCases } from '@/lib/get-cases'
 
 export default async function MapPage() {
-  const cases = await getCases()
+  const [cases, metadata] = await Promise.all([
+    getCases(),
+    getCaseDataMetadata(),
+  ])
 
   return (
     <div className="bg-surface">
       <section className="mx-auto flex max-w-[1440px] flex-col gap-6 px-6 py-10">
-        <SampleDataBanner />
+        <SampleDataBanner sample={metadata.sample} />
 
         <div className="flex flex-col gap-3">
           <p className="text-sm font-semibold uppercase text-primary">

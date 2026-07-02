@@ -1,4 +1,4 @@
-import type { Case } from './types'
+import type { Case, CaseDataMetadata } from './types'
 
 export const SAMPLE_SOURCE_DATABASE = 'SAMPLE — DEMONSTRATION DATA ONLY'
 
@@ -15,6 +15,8 @@ export const sampleCases: Case[] = [
     location_name: 'Generic Northern Plains Location',
     latitude: 46.8083,
     longitude: -100.7837,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'US',
     state_province: 'ND',
     summary:
@@ -37,6 +39,8 @@ export const sampleCases: Case[] = [
     location_name: 'Generic Pacific Northwest Location',
     latitude: 47.6062,
     longitude: -122.3321,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'US',
     state_province: 'WA',
     summary:
@@ -59,6 +63,8 @@ export const sampleCases: Case[] = [
     location_name: 'Generic Southwest Location',
     latitude: 35.0844,
     longitude: -106.6504,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'US',
     state_province: 'NM',
     summary:
@@ -81,6 +87,8 @@ export const sampleCases: Case[] = [
     location_name: 'Generic Upper Midwest Location',
     latitude: 44.9778,
     longitude: -93.265,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'US',
     state_province: 'MN',
     summary:
@@ -103,6 +111,8 @@ export const sampleCases: Case[] = [
     location_name: 'Generic Oklahoma Location',
     latitude: 35.4676,
     longitude: -97.5164,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'US',
     state_province: 'OK',
     summary:
@@ -125,6 +135,8 @@ export const sampleCases: Case[] = [
     location_name: 'Generic British Columbia Location',
     latitude: 49.2827,
     longitude: -123.1207,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'CA',
     state_province: 'BC',
     summary:
@@ -147,6 +159,8 @@ export const sampleCases: Case[] = [
     location_name: 'Generic Alberta Location',
     latitude: 53.5461,
     longitude: -113.4938,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'CA',
     state_province: 'AB',
     summary:
@@ -169,6 +183,8 @@ export const sampleCases: Case[] = [
     location_name: 'Generic Manitoba Location',
     latitude: 49.8951,
     longitude: -97.1384,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'CA',
     state_province: 'MB',
     summary:
@@ -191,6 +207,8 @@ export const sampleCases: Case[] = [
     location_name: 'Generic Ontario Location',
     latitude: 45.4215,
     longitude: -75.6972,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'CA',
     state_province: 'ON',
     summary:
@@ -213,6 +231,8 @@ export const sampleCases: Case[] = [
     location_name: 'Generic Northern Territory Location',
     latitude: 62.454,
     longitude: -114.3718,
+    location_unknown: false,
+    location_precision: 'city',
     country: 'CA',
     state_province: 'NT',
     summary:
@@ -224,3 +244,17 @@ export const sampleCases: Case[] = [
     updated_at: '2026-01-01T00:00:00.000Z',
   },
 ]
+
+export const sampleCaseDataMetadata: CaseDataMetadata = {
+  source: SAMPLE_SOURCE_DATABASE,
+  vintage: '2026-01',
+  generated_at: '2026-01-01T00:00:00.000Z',
+  counts: {
+    total: sampleCases.length,
+    geocoded: sampleCases.filter((item) => !item.location_unknown).length,
+    location_unknown: sampleCases.filter((item) => item.location_unknown)
+      .length,
+    dropped: 0,
+  },
+  sample: true,
+}

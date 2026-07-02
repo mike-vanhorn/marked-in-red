@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import CasesListTable from '@/components/cases/cases-list-table'
 import SampleDataBanner from '@/components/layout/sample-data-banner'
-import { getCases } from '@/lib/get-cases'
+import { getCaseDataMetadata, getCases } from '@/lib/get-cases'
 
 export const metadata: Metadata = {
   title: 'Cases — Marked in Red',
@@ -10,12 +10,15 @@ export const metadata: Metadata = {
 }
 
 export default async function ListPage() {
-  const cases = await getCases()
+  const [cases, caseDataMetadata] = await Promise.all([
+    getCases(),
+    getCaseDataMetadata(),
+  ])
 
   return (
     <div className="bg-surface">
       <section className="mx-auto flex max-w-[1440px] flex-col gap-6 px-6 py-10">
-        <SampleDataBanner />
+        <SampleDataBanner sample={caseDataMetadata.sample} />
 
         <div className="flex flex-col gap-3">
           <p className="text-sm font-semibold uppercase text-primary">
