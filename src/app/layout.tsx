@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: "Marked in Red — MMIWG2S Awareness Map",
   description:
     "An interactive awareness map for understanding Missing and Murdered Indigenous Women, Girls, and Two-Spirit (MMIWG2S) cases across the United States and Canada, honoring those we have lost and those still missing.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f8f9fa",
 };
 
 export default function RootLayout({
