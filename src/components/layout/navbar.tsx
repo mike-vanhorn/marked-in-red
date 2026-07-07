@@ -20,10 +20,15 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="font-display font-extrabold text-xl text-primary"
+          className="flex items-center"
           onClick={() => setOpen(false)}
         >
-          Marked in Red
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/wordmark-horizontal.svg"
+            alt="Marked in Red"
+            className="h-7 w-auto"
+          />
         </Link>
 
         {/* Center nav links — hidden on mobile, visible on md+ */}
