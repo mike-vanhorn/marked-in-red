@@ -14,11 +14,13 @@ export default function Footer() {
       <div className="mx-auto max-w-[1440px] px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo left */}
-          <Link
-            href="/"
-            className="font-display font-extrabold text-lg text-primary"
-          >
-            Marked in Red
+          <Link href="/" className="flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/brand/wordmark-horizontal.svg"
+              alt="Marked in Red"
+              className="h-6 w-auto"
+            />
           </Link>
 
           {/* Nav links center */}
